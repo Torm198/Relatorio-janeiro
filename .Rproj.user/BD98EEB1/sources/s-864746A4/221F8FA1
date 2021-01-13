@@ -1,0 +1,32 @@
+{
+    "id": "221F8FA1",
+    "path": null,
+    "project_path": null,
+    "type": "r_dataframe",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1610547877679.0,
+    "source_on_save": false,
+    "relative_order": 6,
+    "properties": {
+        "expression": "banco_filtrado",
+        "caption": "banco_filtrado",
+        "totalObservations": 674,
+        "displayedObservations": 674,
+        "variables": 11,
+        "cacheKey": "BB932269",
+        "object": "banco_filtrado",
+        "environment": "",
+        "contentUrl": "grid_resource/gridviewer.html?env=&obj=banco_filtrado&cache_key=BB932269&max_cols=50",
+        "preview": 0
+    },
+    "folds": "",
+    "lastKnownWriteTime": 2462445557779553082,
+    "encoding": "",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1610547877679,
+    "read_only": false,
+    "read_only_alternatives": []
+}

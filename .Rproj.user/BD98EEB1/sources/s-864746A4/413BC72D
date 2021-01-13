@@ -1,0 +1,32 @@
+{
+    "id": "413BC72D",
+    "path": null,
+    "project_path": null,
+    "type": "r_dataframe",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1610547693423.0,
+    "source_on_save": false,
+    "relative_order": 5,
+    "properties": {
+        "expression": "banco",
+        "caption": "banco",
+        "totalObservations": 1395,
+        "displayedObservations": 1395,
+        "variables": 9,
+        "cacheKey": "AE87AFCC",
+        "object": "banco",
+        "environment": "",
+        "contentUrl": "grid_resource/gridviewer.html?env=&obj=banco&cache_key=AE87AFCC&max_cols=50",
+        "preview": 0
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1610546842,
+    "encoding": "",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1610547693423,
+    "read_only": false,
+    "read_only_alternatives": []
+}
