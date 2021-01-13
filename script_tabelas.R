@@ -23,13 +23,13 @@ banco_filtrado <-
 
 banco <- read_xlsx('Dados2/bancotratado.xlsx')
 
-d_geral_filtrado <- dados_gerais %>%
 
 
 
 
 
-list.files('Dados/',full.names = T)
+
+
 
 
 
@@ -77,16 +77,48 @@ tabela15 <- banco_filtrado %>% group_by(Setor) %>%
   janitor::adorn_totals() %>% mutate(Percentual=paste0(Percentual*100/Aprovados,'%'))
 
 
-list(tabela7,tabela8,tabela9,tabela10,tabela11,tabela12,tabela13,tabela14) %>% openxlsx::write.xlsx('tabelas_provisorio.xlsx')
+# list(tabela7,tabela8,tabela9,tabela10,tabela11,tabela12,tabela13,tabela14) %>% openxlsx::write.xlsx('tabelas_provisorio.xlsx')
+# 
+# tabela3 <- banco %>% group_by(ano) %>% summarise(Ofertas=length(unique(Oferta))) %>% janitor::adorn_totals() %>% pivot_wider(names_from = ano,values_from=Ofertas)
+# 
+# 
+# tabela4 <- banco %>% group_by(ano) %>% summarise(Ofertas=sum(as.numeric(str_trim(Total)))) %>% janitor::adorn_totals() %>% pivot_wider(names_from = ano,values_from=Ofertas)
+# 
+# 
+# tabela5 <- banco %>% group_by(ano,Curso) %>%
+#   summarise(n=sum(as.numeric(str_trim(Aprovado)),na.rm=T)) %>% 
+#   pivot_wider(names_from = ano,values_from=n) %>% janitor::adorn_totals()
 
-tabela3 <- banco %>% group_by(ano) %>% summarise(Ofertas=length(unique(Oferta))) %>% janitor::adorn_totals() %>% pivot_wider(names_from = ano,values_from=Ofertas)
+
+########tratamento reacao##########
+
+reacao_dir <- list.files('Dados/',full.names = T)[str_detect(list.files('Dados/',full.names = T),'satisfação')]
+
+nome_fix <- names(read_xlsx(reacao_dir[1]))
+reacao <-data.frame() 
+
+for(i in reacao_dir){
+  import <- read_xlsx(i)
+  reacao <- bind_rows(reacao,import)
+}
+interesse <-
+  c(
+    "Assimilação do conteúdo do curso",
+    "Capacidade de aplicar o conhecimento ensinado no curso em diferentes situações",
+    "Capacidade de transmitir os conhecimentos adquiridos no curso a outras pessoas",
+    "Conciliação do curso com minhas atividades profissionais.",
+    "Disponibilidade de computador nos horários que tenho para estudar."
+  )
+
+tabela16 <-
+  reacao %>% select(interesse) %>% summarise(
+    across(everything(),  ~ mean(as.numeric(.))),
+    Média = reacao %>% select(interesse) %>% unlist() %>% as.numeric() %>% mean()
+  )
 
 
-tabela4 <- banco %>% group_by(ano) %>% summarise(Ofertas=sum(as.numeric(str_trim(Total)))) %>% janitor::adorn_totals() %>% pivot_wider(names_from = ano,values_from=Ofertas)
 
 
-tabela5 <- banco %>% group_by(ano,Curso) %>%
-  summarise(n=sum(as.numeric(str_trim(Aprovado)),na.rm=T)) %>% 
-  pivot_wider(names_from = ano,values_from=n) %>% janitor::adorn_totals()
-
-
+#tabela17 <-
+analise <- 
+  left_join(reacao %>% select(Oferta,"Assimilação do conteúdo do curso"),banco %>% select(Curso,Oferta) %>% unique())
